@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Friendversary! </title>
+    <style>
+        /* CSS Reset & Variable Definitions */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-cream: #fbf8f3;
+            --bg-warm: #f4eee1;
+            --primary-brown: #6f4e37;
+            --dark-brown: #4a3319;
+            --light-brown: #a67c52;
+            --accent-gold: #c39b62;
+            --text-dark: #3d2a1c;
+            --text-muted: #8c7662;
+            --white: #ffffff;
+            --font-serif: 'Georgia', serif;
+            --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-warm);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--light-brown);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-brown);
+        }
+
+        /* Typography & Layout Helpers */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            color: var(--dark-brown);
+            text-align: center;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            font-size: 1.2rem;
+            margin-top: 5px;
+            color: var(--accent-gold);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid rgba(166, 124, 82, 0.1);
+        }
+
+        /* 1. Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--bg-warm) 0%, var(--bg-cream) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .hero-decor {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.2;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            color: var(--dark-brown);
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--primary-brown);
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .countdown-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .countdown-box {
+            background: var(--white);
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(111, 78, 55, 0.05);
+            border: 1px solid rgba(166, 124, 82, 0.1);
+            min-width: 80px;
+        }
+
+        .countdown-box span {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--dark-brown);
+        }
+
+        .countdown-box label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .cta-btn {
+            background-color: var(--primary-brown);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(111, 78, 55, 0.2);
+        }
+
+        .cta-btn:hover {
+            background-color: var(--dark-brown);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(111, 78, 55, 0.3);
+        }
+
+        /* 2. Friendship Stats (Canggih & Unik) */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 30px 20px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(166, 124, 82, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-brown);
+            font-family: var(--font-serif);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* 3. Our Memories (Interactive Gallery & Timeline) */
+        .memory-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .memory-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.02);
+            border: 1px solid rgba(166, 124, 82, 0.1);
+        }
+
+        .memory-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 👈 UBAH DARI 'cover' MENJADI 'contain' */
+    background-color: #f4eee1; /* Warna latar belakang cream jika ada sisa ruang kosong */
+}
+
+
+        /* polaroid style */
+        .memory-card {
+            padding: 15px;
+            padding-bottom: 25px;
+            background: #fff;
+        }
+        .memory-img-placeholder {
+            height: 250px;
+            margin-bottom: 15px;
+            border: 1px solid #eee;
+        }
+
+        .memory-caption {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            color: var(--dark-brown);
+            text-align: center;
+        }
+
+        .memory-date {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        /* 4. Special Video Section */
+        .video-wrapper {
+            max-width: 750px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(111, 78, 55, 0.05);
+            border: 1px solid rgba(166, 124, 82, 0.1);
+        }
+
+.photo-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 220px;
+            overflow: hidden;
+            border-radius: 20px;
+            background: #000;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #000;
+        }
+
+        .video-container iframe, .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* 5. Song for You (Interactive Custom Audio UI) */
+        .audio-player-card {
+            max-width: 500px;
+            margin: 0 auto;
+            background: linear-gradient(to bottom, #ffffff, var(--bg-warm));
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(111, 78, 55, 0.08);
+            border: 1px solid rgba(166, 124, 82, 0.15);
+            text-align: center;
+        }
+
+        .vinyl-disc {
+            width: 150px;
+            height: 150px;
+            background: #222;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            animation: spin 8s linear infinite;
+            animation-play-state: paused;
+        }
+
+        .vinyl-disc.playing {
+            animation-play-state: running;
+        }
+
+        .vinyl-center {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            border: 4px solid #222;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .song-title {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--dark-brown);
+            margin-bottom: 5px;
+        }
+
+        .song-artist {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .audio-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .player-btn {
+            background: var(--primary-brown);
+            color: var(--white);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .player-btn:hover {
+            transform: scale(1.1);
+            background: var(--dark-brown);
+        }
+
+        /* 6. Inside Jokes & Trivia (Tidak Pasaran) */
+        .joke-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .joke-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid rgba(166, 124, 82, 0.1);
+            cursor: pointer;
+            position: relative;
+            perspective: 1000px;
+            min-height: 160px;
+        }
+
+        .joke-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .joke-card:hover .joke-inner {
+            transform: rotateY(180deg);
+        }
+
+        .joke-front, .joke-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .joke-front {
+            color: var(--dark-brown);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .joke-front span {
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        .joke-back {
+            transform: rotateY(180deg);
+            color: var(--primary-brown);
+            font-style: italic;
+        }
+
+        /* 7. Future Bucket List */
+        .bucket-list {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(166, 124, 82, 0.1);
+        }
+
+        .bucket-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 0;
+            border-bottom: 1px dashed rgba(166, 124, 82, 0.15);
+        }
+
+        .bucket-item:last-child {
+            border-bottom: none;
+        }
+
+        .bucket-checkbox {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary-brown);
+            cursor: pointer;
+        }
+
+        .bucket-text {
+            font-size: 1.05rem;
+            color: var(--text-dark);
+        }
+
+        /* 8. Ucapan / Wishes Letter Slider */
+        .wishes-box {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #fffdf9;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: inset 0 0 40px rgba(111,78,55,0.03), 0 10px 25px rgba(0,0,0,0.02);
+            border-left: 5px solid var(--accent-gold);
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            color: var(--dark-brown);
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .wishes-box::before {
+            content: "“";
+            font-size: 5rem;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            color: rgba(195, 155, 98, 0.15);
+        }
+
+        .wishes-footer {
+            margin-top: 30px;
+            text-align: right;
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--primary-brown);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-brown);
+            color: var(--bg-cream);
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Hero Section -->
+    <section class="hero">
+        <div class="hero-decor" style="top: 15%; left: 10%;">🍂</div>
+        <div class="hero-decor" style="top: 25%; right: 15%; animation-delay: 2s;">☕</div>
+        <div class="hero-decor" style="bottom: 20%; left: 20%; animation-delay: 4s;">📸</div>
+        <div class="hero-decor" style="bottom: 30%; right: 10%; animation-delay: 1s;">✨</div>
+
+        <h1>Happy Friendversary!</h1>
+        <p>Merayakan setiap tawa, sedih, bahagia dan indah yang kita lalui bersama selama ini.</p>
+
+        <div class="countdown-container">
+            <div class="countdown-box">
+                <span id="years">0</span>
+                <label>Tahun</label>
+            </div>
+            <div class="countdown-box">
+                <span id="days">0</span>
+                <label>Hari</label>
+            </div>
+            <div class="countdown-box">
+                <span id="hours">0</span>
+                <label>Jam</label>
+            </div>
+        </div>
+
+        <a href="#memories" class="cta-btn">Click to continue. . .</a>
+    </section>
+
+    <!-- 2. Friendship Stats Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Friendship Radar & Stats</h2>
+            <p class="section-subtitle"></p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">💬</div>
+                    <div class="stat-number">25k+++</div>
+                    <div class="stat-label">Our bubble chat</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🖼</div>
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Manips yang kita buat sendiri</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">😆</div>
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Tingkat Kecocokan Selera Jokes kita</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">️👥️</div>
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Wacana meetup yang ga pernah terealisasikan itu</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Our Memories Section -->
+    <section id="memories">
+        <div class="container">
+            <h2 class="section-title">Our Memories</h2>
+            <p class="section-subtitle">Lembaran-lembaran cerita kita</p>
+
+            <div class="memory-layout">
+                <!-- Polaroid Card 1 -->
+                <div class="memory-card">
+                    <div class="memory-img-container"<img src="memo1.jpg"></div>
+                    <div class="memory-caption">Hari Pertama Kita Berteman!</div>
+                    <div class="memory-date">13 April 2025</div>
+                </div>
+
+                <!-- Polaroid Card 2 -->
+                <div class="memory-card">
+                    <div class="memory-img-container"<img src="memo2.jpg"></div>
+                    <div class="memory-caption">Manips Pertama Kita, Given Yang Buat</div>
+                    <div class="memory-date">27 Desember 2024</div>
+                </div>
+                
+                <!-- Polaroid Card 2 -->
+                <div class="memory-card">
+                   <div class="memory-img-container"<img src="memo3.jpg"></div>
+                    <div class="memory-caption">Channel Telegram Khusus Kita Berdua</div>
+                    <div class="memory-date">27 Desember 2024</div>
+                </div>
+
+                <!-- Polaroid Card 3 -->
+                <div class="memory-card">
+                    <div class="memory-img-container"<img src="memo3].png"></div>
+                    <div class="memory-caption">Ngerayain Tahun Baru Bareng Pertama Kali!</div>
+                    <div class="memory-date">1 Januari 2026</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Special Video Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Special Video</h2>
+            <p class="section-subtitle">A glimpse of the memories we've made together.</p>
+
+            <div class="video-wrapper">
+                <div class="video-container">
+                    <!-- Kamu bisa ganti src video dengan link Youtube atau file lokal milikmu -->
+                    <iframe src="video1.mp4" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Song for You Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Song For You</h2>
+            <p class="section-subtitle">Lagu yang selalu bikin Hiro keinget Given</p>
+
+            <!-- Style tambahan agar posisi 3 player berjejer rapi / tidak terlalu renggang -->
+            <style>
+                .song-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                    gap: 30px;
+                    margin-top: 20px;
+                }
+                /* Mengubah selector ID menjadi Class untuk animasi vinyl */
+                .vinyl-disc.playing {
+                    animation-play-state: running;
+                }
+            </style>
+
+            <div class="song-grid">
+                
+                <!-- Player Lagu 1 -->
+                <div class="audio-player-card">
+                    <div class="vinyl-disc"> <!-- ID dihapus, diganti sistem class otomatis -->
+                        <div class="vinyl-center"></div>
+                    </div>
+                    <div class="song-title">One Call Away</div>
+                    <div class="song-artist">Charlie Puth</div>
+
+                    <audio class="custom-audio"> 
+                        <source src="song1.mp3" type="audio/mpeg">
+                    </audio>
+
+                    <div class="audio-controls">
+                        <button class="player-btn">▶</button>
+                    </div>
+                </div>
+
+                <!-- Player Lagu 2 -->
+                <div class="audio-player-card">
+                    <div class="vinyl-disc">
+                        <div class="vinyl-center"></div>
+                    </div>
+                    <div class="song-title">Count On Me</div>
+                    <div class="song-artist">Bruno Mars</div>
+                    
+                    <audio class="custom-audio"> 
+                        <source src="song2.mp3" type="audio/mpeg">
+                    </audio>
+
+                    <div class="audio-controls">
+                        <button class="player-btn">▶</button>
+                    </div>
+                </div>
+
+                <!-- Player Lagu 3 -->
+                <div class="audio-player-card">
+                    <div class="vinyl-disc">
+                        <div class="vinyl-center"></div>
+                    </div>
+                    <div class="song-title">Best Friend</div>
+                    <div class="song-artist">Rex Orange County</div>
+                   
+                    <audio class="custom-audio"> 
+                        <source src="song3.mp3" type="audio/mpeg">
+                    </audio>
+
+                    <div class="audio-controls">
+                        <button class="player-btn">▶</button>
+                    </div>
+                </div>
+
+            </div> <!-- Akhir dari song-grid -->
+        </div>
+    </section>
+
+    <!-- 6. Inside Jokes & Trivia Section (Canggih & Unik) -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Inside Jokes</h2>
+            <p class="section-subtitle">Sentuh kartu untuk melihat rahasia / inside jokes kita</p>
+
+            <div class="joke-grid">
+                <div class="joke-card">
+                    <div class="joke-inner">
+                        <div class="joke-front">
+                            "Hiroku & Kakak"
+                            <span>Sentuh untuk detail</span>
+                        </div>
+                        <div class="joke-back">
+                           SUMPAH INGET GA pas kita pura pura pacaran (wlw) kamu jadi Jiwoo sub dan aku jadi Juun dom. ITU PUNCAK KOMEDI KITA BANGET ANJIR WKWKW aku masi ada sticker yang kamu cuping btw :v
+                        </div>
+                    </div>
+                </div>
+
+                <div class="joke-card">
+                    <div class="joke-inner">
+                        <div class="joke-front">
+                            Pempek
+                            <span>Sentuh untuk detail</span>
+                        </div>
+                        <div class="joke-back">
+                            Tiap hari given selalu minta pempek ke aku anjir. banyak kali permintaan pempek dia, pempek matcha, pempek sebesar menara eiffel, martabak isi pempek, pempek bentuk bahlil, pempek se truck dan masih banyak lagi. KATA GW STOP MINTAIN PEMPEK ANJIR GW BUKAN JURAGAN PEMPEK
+                        </div>
+                    </div>
+                </div>
+
+                <div class="joke-card">
+                    <div class="joke-inner">
+                        <div class="joke-front">
+                            Persib
+                            <span>Sentuh untuk detail</span>
+                        </div>
+                        <div class="joke-back">
+                        Ini orang dlu ampir tiap hari bahas nya persib mulu, kirimin video persib mulu di tiktok, apa lagi pas persib menang ga ada abisnya anjir
+                        </div>
+                    </div>
+    </div>
+    
+                   <div class="joke-card">
+                    <div class="joke-inner">
+                        <div class="joke-front">
+                           Sticker Bang Windah
+                            <span>Sentuh untuk detail</span>
+                        </div>
+                        <div class="joke-back">
+                        Sticker bang windah sangat amat laris di roomchat kita, tapi lebih ke given si yang tiap saat nya adalah bang windut mulu
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Future Bucket List Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Our Future Bucket List</h2>
+            <p class="section-subtitle">Hal-hal yang harus Hiro sama Given lakuin</p>
+
+            <div class="bucket-list">
+                <div class="bucket-item">
+                    <input type="checkbox" class="bucket-checkbox" checked id="item1">
+                    <label for="item1" class="bucket-text" style="text-decoration: line-through; opacity: 0.6;">Ngerayain satu tahun pertemanan</label>
+                </div>
+<div class="bucket-item">
+         <input type="checkbox" class="bucket-checkbox" checked id="item1">
+         <label for="item1" class="bucket-text" style="text-decoration: line-through; opacity: 0.6;">Nobar Rave</label>
+         </div>
+    
+                <div class="bucket-item">
+                    <input type="checkbox" class="bucket-checkbox" id="item2">
+                    <label for="item2" class="bucket-text">Meetup dan photobooth</label>
+                </div>
+                <div class="bucket-item">
+                    <input type="checkbox" class="bucket-checkbox" id="item3">
+                    <label for="item3" class="bucket-text">Kasih coba Given pempek bunda</label>
+                </div>
+                <div class="bucket-item">
+                    <input type="checkbox" class="bucket-checkbox" id="item4">
+                    <label for="item4" class="bucket-text">Mabar Roblox sambil DC</label>
+                </div>
+                <div class="bucket-item">
+                    <input type="checkbox" class="bucket-checkbox" id="item4">
+                    <label for="item4" class="bucket-text">Jalan jalan di Braga dan keliling Bandung berdua</label>
+                </div>
+                <div class="bucket-item">
+    <input type="checkbox" class="bucket-checkbox" id="item4">
+    <label for="item4" class="bucket-text">Foto di London lokal (Ampera)</label>
+</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Wishes / Ucapan Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">365 Days of Us;</h2>
+            <p class="section-subtitle"> A Letter for Our First Friendversary</p>
+
+            <div class="wishes-box">
+                Hai my Bandung nya Hiro! Makasih banyak ya Given karena udah selalu ada di setiap fase hidup Hiro. Makasih Given karena udah dengerin keluh kesah yang diulang-ulang sama Hiro, makasih buat ga pernah bosen ngasih Hiro saran (walau kadang ga aku kulakuin), makasih karena udah tetap bertahan sama Hiro disaat orang lain pada pergi, dan terimakasih atas satu tahun yang kelebihan ini ♡. Maaf ya kalau nyatanya Hiro banyak kurangnya dalam pertemanan ini, maaf kalau ada aja kelakukan Hiro yang buat Given kesel, dan maaf karena Hiro sering ngilang ngilangan. Semoga persahabatan kita awet terus sampai kita sukses bareng, sampai kita jadi opung dan semoga kita bisa ketemu dan bercanda terus sampai nanti, yaa. Happy Friendversary! ♡♡♡
+                <div class="wishes-footer">
+                    — Hiroka
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Made with ♡ for our special day. Happy Friendversary!</p>
+    </footer>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // 1. Countdown Logic
+        // Di sini di-set tanggal awal kalian berteman (contoh: 15 Oktober 2022)
+        const startDate = new Date('2025-04-13T11:17:00');
+        
+        function updateCounter() {
+            const now = new Date();
+            const difference = now - startDate;
+
+            const years = Math.floor(difference / (1000 * 60 * 60 * 24 * 365.25));
+            const days = Math.floor((difference % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+            document.getElementById('years').innerText = years;
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+        }
+        
+        setInterval(updateCounter, 1000);
+        updateCounter();
+
+<script>
+    // 1. Logic Countdown (Tetap Aman & Berjalan)
+    const startDate = new Date('2022-10-15T00:00:00'); // Sesuai tanggal awal berteman
+    
+    function updateCounter() {
+        const now = new Date();
+        const difference = now - startDate;
+
+        const years = Math.floor(difference / (1000 * 60 * 60 * 24 * 365.25));
+        const days = Math.floor((difference % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+        // Menggunakan pengecekan agar tidak error jika id tidak sengaja terhapus
+        if(document.getElementById('years')) document.getElementById('years').innerText = years;
+        if(document.getElementById('days')) document.getElementById('days').innerText = days;
+        if(document.getElementById('hours')) document.getElementById('hours').innerText = hours;
+    }
+    
+    setInterval(updateCounter, 1000);
+    updateCounter();
+
+
+    // 2. Logic Multi-Audio Player Baru (Memperbaiki error tombol)
+    // Mengambil semua kartu pemutar lagu yang ada
+    const playerCards = document.querySelectorAll('.audio-player-card');
+
+    playerCards.forEach(card => {
+        const audio = card.querySelector('.custom-audio');
+        const playPauseBtn = card.querySelector('.player-btn');
+        const vinyl = card.querySelector('.vinyl-disc');
+
+        if (playPauseBtn && audio && vinyl) {
+            playPauseBtn.addEventListener('click', function() {
+                // Matikan lagu lain dulu jika ada yang sedang berputar agar tidak balapan
+                playerCards.forEach(otherCard => {
+                    if (otherCard !== card) {
+                        const otherAudio = otherCard.querySelector('.custom-audio');
+                        const otherBtn = otherCard.querySelector('.player-btn');
+                        const otherVinyl = otherCard.querySelector('.vinyl-disc');
+                        
+                        if (otherAudio && !otherAudio.paused) {
+                            otherAudio.pause();
+                            otherBtn.innerText = '▶';
+                            otherVinyl.classList.remove('playing');
+                        }
+                    }
+                });
+
+                // Jalankan atau jeda lagu yang diklik
+                if (audio.paused) {
+                    audio.play().catch(error => {
+                        console.log("Gagal memutar audio, pastikan file mp3 ada di folder yang sama:", error);
+                    });
+                    playPauseBtn.innerText = '⏸';
+                    vinyl.classList.add('playing');
+                } else {
+                    audio.pause();
+                    playPauseBtn.innerText = '▶';
+                    vinyl.classList.remove('playing');
+                }
+            });
+
+            // Jika lagu selesai berputar, kembalikan ikon menjadi PLAY
+            audio.addEventListener('ended', function() {
+                playPauseBtn.innerText = '▶';
+                vinyl.classList.remove('playing');
+            });
+        }
+    });
+</script>
+
+    </script>
+</body>
+</html>
