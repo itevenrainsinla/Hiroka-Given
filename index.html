@@ -228,12 +228,12 @@
             border: 1px solid rgba(166, 124, 82, 0.1);
         }
 
-        .memory-img-container img {
+        .memory-img-container {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* 👈 UBAH DARI 'cover' MENJADI 'contain' */
-    background-color: #f4eee1; /* Warna latar belakang cream jika ada sisa ruang kosong */
-}
+    object-fit: contain; 
+    background-color: #f4eee1 
+        }
 
 
         /* polaroid style */
@@ -641,68 +641,44 @@
         </div>
     </section>
 
-    <!-- 5. Song for You Section (Spotify Premium Look) -->
+    <!-- 5. Song for You Section -->
     <section>
         <div class="container">
             <h2 class="section-title">Song For You</h2>
             <p class="section-subtitle">Lagu yang selalu bikin Hiro keinget Given</p>
 
+            <!-- Style tambahan agar posisi 3 player berjejer rapi / tidak terlalu renggang -->
             <style>
                 .song-grid {
                     display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                    gap: 25px;
+                    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                    gap: 30px;
                     margin-top: 20px;
                 }
-                .spotify-card {
-                    background: #ffffff;
-                    border-radius: 20px;
-                    padding: 15px;
-                    box-shadow: 0 10px 25px rgba(111, 78, 55, 0.05);
-                    border: 1px solid rgba(166, 124, 82, 0.15);
-                    transition: transform 0.3s ease;
-                }
-                .spotify-card:hover {
-                    transform: translateY(-5px);
-                }
-                .spotify-card iframe {
-                    border-radius: 12px;
-                    width: 100%;
-                    height: 152px; /* Ukuran compact widget Spotify */
-                    border: none;
+                /* Mengubah selector ID menjadi Class untuk animasi vinyl */
+                .vinyl-disc.playing {
+                    animation-play-state: running;
                 }
             </style>
 
             <div class="song-grid">
                 
-                <!-- Lagu 1: Charlie Puth - One Call Away -->
-                <div class="spotify-card">
-                    <iframe src="https://open.spotify.com/track/37R0bQOQj5a7DOqh1TGzvB?si=Xb1WuCzISGK526J7gfGmyg" 
-                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                            loading="lazy">
-                    </iframe>
+                <!-- Player Lagu 1 -->
+                <div class="audio-player-card">
+                    <div class="vinyl-disc"> <!-- ID dihapus, diganti sistem class otomatis -->
+                        <div class="vinyl-center"></div>
+                    </div>
+                    <div class="song-title">One Call Away</div>
+                    <div class="song-artist">Charlie Puth</div>
+
+                    <audio class="custom-audio"> 
+                        <source src="song1.mp3" type="audio/mpeg">
+                    </audio>
+
+                    <div class="audio-controls">
+                        <button class="player-btn">▶</button>
+                    </div>
                 </div>
-
-                <!-- Lagu 2: Bruno Mars - Count On Me -->
-                <div class="spotify-card">
-                    <iframe src="https://open.spotify.com/track/7l1qvxWjxcKpB9PCtBuTbU?si=UlIbTAwXTHCaOuVA8nf0Mw" 
-                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                            loading="lazy">
-                    </iframe>
-                </div>
-
-                <!-- Lagu 3: Rex Orange County - Best Friend -->
-                <div class="spotify-card">
-                    <iframe src="https://open.spotify.com/track/3rPtS4nfpy7PsARctAWpzd?si=AHAUQHNFRRSVxzYmux8qDA" 
-                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                            loading="lazy">
-                    </iframe>
-                </div>
-
-            </div> <!-- Akhir dari song-grid -->
-        </div>
-    </section>
-
 
                 <!-- Player Lagu 2 -->
                 <div class="audio-player-card">
@@ -882,7 +858,76 @@
         setInterval(updateCounter, 1000);
         updateCounter();
 
+<script>
+    // 1. Logic Countdown (Tetap Aman & Berjalan)
+    const startDate = new Date('2022-10-15T00:00:00'); // Sesuai tanggal awal berteman
+    
+    function updateCounter() {
+        const now = new Date();
+        const difference = now - startDate;
 
+        const years = Math.floor(difference / (1000 * 60 * 60 * 24 * 365.25));
+        const days = Math.floor((difference % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+        // Menggunakan pengecekan agar tidak error jika id tidak sengaja terhapus
+        if(document.getElementById('years')) document.getElementById('years').innerText = years;
+        if(document.getElementById('days')) document.getElementById('days').innerText = days;
+        if(document.getElementById('hours')) document.getElementById('hours').innerText = hours;
+    }
+    
+    setInterval(updateCounter, 1000);
+    updateCounter();
+
+
+    // 2. Logic Multi-Audio Player Baru (Memperbaiki error tombol)
+    // Mengambil semua kartu pemutar lagu yang ada
+    const playerCards = document.querySelectorAll('.audio-player-card');
+
+    playerCards.forEach(card => {
+        const audio = card.querySelector('.custom-audio');
+        const playPauseBtn = card.querySelector('.player-btn');
+        const vinyl = card.querySelector('.vinyl-disc');
+
+        if (playPauseBtn && audio && vinyl) {
+            playPauseBtn.addEventListener('click', function() {
+                // Matikan lagu lain dulu jika ada yang sedang berputar agar tidak balapan
+                playerCards.forEach(otherCard => {
+                    if (otherCard !== card) {
+                        const otherAudio = otherCard.querySelector('.custom-audio');
+                        const otherBtn = otherCard.querySelector('.player-btn');
+                        const otherVinyl = otherCard.querySelector('.vinyl-disc');
+                        
+                        if (otherAudio && !otherAudio.paused) {
+                            otherAudio.pause();
+                            otherBtn.innerText = '▶';
+                            otherVinyl.classList.remove('playing');
+                        }
+                    }
+                });
+
+                // Jalankan atau jeda lagu yang diklik
+                if (audio.paused) {
+                    audio.play().catch(error => {
+                        console.log("Gagal memutar audio, pastikan file mp3 ada di folder yang sama:", error);
+                    });
+                    playPauseBtn.innerText = '⏸';
+                    vinyl.classList.add('playing');
+                } else {
+                    audio.pause();
+                    playPauseBtn.innerText = '▶';
+                    vinyl.classList.remove('playing');
+                }
+            });
+
+            // Jika lagu selesai berputar, kembalikan ikon menjadi PLAY
+            audio.addEventListener('ended', function() {
+                playPauseBtn.innerText = '▶';
+                vinyl.classList.remove('playing');
+            });
+        }
+    });
+</script>
 
     </script>
 </body>
