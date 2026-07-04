@@ -213,9 +213,7 @@
             color: var(--text-muted);
         }
 
-        /* 3. Our Memories (Interactive Gallery & Timeline) */
-        .memory-layout {
-        .memory-layout {
+        .memory-layout-fixed {
     display: grid;
     /* Kita kunci ukuran maksimal satu kartu polaroid paling besar 350px saja */
     grid-template-columns: repeat(auto-fit, minmax(280px, 350px)); 
@@ -224,7 +222,7 @@
     width: 100%;
 }
 
-.memory-card {
+.memory-card-fixed {
     background: #ffffff;
     padding: 16px 16px 26px 16px;
     border-radius: 12px;
@@ -235,11 +233,11 @@
     box-sizing: border-box;
 }
 
-.memory-card:hover {
+.memory-card-fixed:hover {
     transform: translateY(-8px) rotate(1deg);
 }
 
-.memory-img-container {
+.memory-img-container-fixed {
     width: 100%;
     aspect-ratio: 4 / 3; /* Mengunci rasio kotak wajib 4:3 */
     background-color: #f4eee1; 
@@ -253,7 +251,7 @@
 }
 
 /* JALUR UTAMA UNTUK JINAKKAN FOTO AGAR TIDAK MELAR */
-.memory-img-container img {
+.memory-img-container-fixed img {
     width: 100% !important;
     height: 100% !important;
     /* 'cover' diganti 'contain' agar foto utuh masuk bingkai. 
@@ -263,7 +261,7 @@
     display: block;
 }
 
-.memory-caption {
+.memory-caption-fixed {
     font-family: 'Georgia', serif;
     font-size: 1.1rem;
     color: #4a3319;
@@ -272,7 +270,7 @@
     margin-top: 15px;
 }
 
-.memory-date {
+.memory-date-fixed {
     display: block;
     font-size: 0.8rem;
     color: #c39b62;
@@ -611,37 +609,37 @@
             <h2 class="section-title">Our Memories</h2>
             <p class="section-subtitle">Lembaran-lembaran cerita kita</p>
 
-            <div class="memory-layout">
+            <div class="memory-layout-fixed">
                 <!-- Polaroid Card 1 -->
-                <div class="memory-card">
-                    <div class="memory-img-container">
+                <div class="memory-card-fixed">
+                    <div class="memory-img-container-fixed">
                         <img src="memo1.jpg"></div>
-                    <div class="memory-caption">Hari Pertama Kita Berteman!</div>
-                    <div class="memory-date">13 April 2025</div>
+                    <div class="memory-caption-fixed">Hari Pertama Kita Berteman!</div>
+                    <div class="memory-date-fixed">13 April 2025</div>
                 </div>
 
                 <!-- Polaroid Card 2 -->
-                <div class="memory-card">
-                    <div class="memory-img-container">
+                <div class="memory-card-fixed">
+                    <div class="memory-img-container-fixed">
                         <img src="memo2.jpg"></div>
-                    <div class="memory-caption">Manips Pertama Kita, Given Yang Buat</div>
-                    <div class="memory-date">27 Desember 2024</div>
+                    <div class="memory-caption-fixed">Manips Pertama Kita, Given Yang Buat</div>
+                    <div class="memory-date-fixed">27 Desember 2024</div>
                 </div>
                 
                 <!-- Polaroid Card 2 -->
-                <div class="memory-card">
-                   <div class="memory-img-container">
+                <div class="memory-card-fixed">
+                   <div class="memory-img-container-fixed">
                        <img src="memo3.jpg"></div>
-                    <div class="memory-caption">Channel Telegram Khusus Kita Berdua</div>
-                    <div class="memory-date">27 Desember 2024</div>
+                    <div class="memory-caption-fixed">Channel Telegram Khusus Kita Berdua</div>
+                    <div class="memory-date-fixed">27 Desember 2024</div>
                 </div>
 
                 <!-- Polaroid Card 3 -->
-                <div class="memory-card">
-                    <div class="memory-img-container">
+                <div class="memory-card-fixed">
+                    <div class="memory-img-container-fixed">
                         <img src="memo3].png"></div>
-                    <div class="memory-caption">Ngerayain Tahun Baru Bareng Pertama Kali!</div>
-                    <div class="memory-date">1 Januari 2026</div>
+                    <div class="memory-caption-fixed">Ngerayain Tahun Baru Bareng Pertama Kali!</div>
+                    <div class="memory-date-fixed">1 Januari 2026</div>
                 </div>
             </div>
         </div>
