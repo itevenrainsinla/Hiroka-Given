@@ -804,28 +804,7 @@
         }
         
         setInterval(updateCounter, 1000);
-        updateCounter();
-
-<script>
-    // 1. Logic Countdown (Tetap Aman & Berjalan)
-    const startDate = new Date('2022-10-15T00:00:00'); // Sesuai tanggal awal berteman
-    
-    function updateCounter() {
-        const now = new Date();
-        const difference = now - startDate;
-
-        const years = Math.floor(difference / (1000 * 60 * 60 * 24 * 365.25));
-        const days = Math.floor((difference % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-
-        // Menggunakan pengecekan agar tidak error jika id tidak sengaja terhapus
-        if(document.getElementById('years')) document.getElementById('years').innerText = years;
-        if(document.getElementById('days')) document.getElementById('days').innerText = days;
-        if(document.getElementById('hours')) document.getElementById('hours').innerText = hours;
-    }
-    
-    setInterval(updateCounter, 1000);
-    updateCounter();
+        updateCounter(); 
 
 
         const audio = document.getElementById('custom-audio');
@@ -845,6 +824,5 @@
         });
 </script>
 
-    </script>
 </body>
 </html>
