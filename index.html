@@ -230,10 +230,23 @@
 
         .memory-img-container {
     width: 100%;
-    height: 100%;
-    object-fit: contain; 
-    background-color: #f4eee1 
-        }
+    aspect-ratio: 4 / 3; /* Mengunci rasio kotak pembungkus wajib 4:3 */
+    background-color: #f4eee1; /* Warna cream di area kosong jika foto tidak muat */
+    border: 1px solid #eaddca;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex; /* Memposisikan foto tepat di tengah kotak */
+    align-items: center;
+    justify-content: center;
+}
+
+.memory-img-container img {
+    max-width: 100% !important;   /* Memaksa lebar foto tidak boleh melebihi kotak */
+    max-height: 100% !important;  /* Memaksa tinggi foto tidak boleh melebihi kotak */
+    width: auto !important;       /* Mengembalikan proporsi asli foto */
+    height: auto !important;      /* Mengembalikan proporsi asli foto */
+    object-fit: contain !important; /* Senjata pamungkas agar tidak di-zoom paksa */
+}
 
 
         /* polaroid style */
