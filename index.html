@@ -662,59 +662,25 @@
             </style>
 
             <div class="song-grid">
+
+            <div class="audio-player-card">
+                <div class="vinyl-disc" id="vinyl">
+                    <div class="vinyl-center"></div>
+                </div>
+                <div class="song-title">Kisah Klasik</div>
+                <div class="song-artist">Sheila On 7 (Atau Lagu Pilihanmu)</div>
                 
-                <!-- Player Lagu 1 -->
-                <div class="audio-player-card">
-                    <div class="vinyl-disc"> <!-- ID dihapus, diganti sistem class otomatis -->
-                        <div class="vinyl-center"></div>
-                    </div>
-                    <div class="song-title">One Call Away</div>
-                    <div class="song-artist">Charlie Puth</div>
+                <!-- Tag audio HTML asli disembunyikan agar tampilan bisa di-custom cantik -->
+                <audio id="custom-audio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
 
-                    <audio class="custom-audio"> 
-                        <source src="song1.mp3" type="audio/mpeg">
-                    </audio>
-
-                    <div class="audio-controls">
-                        <button class="player-btn">▶</button>
-                    </div>
+                <div class="audio-controls">
+                    <button class="player-btn" id="play-pause-btn">▶</button>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <!-- Player Lagu 2 -->
-                <div class="audio-player-card">
-                    <div class="vinyl-disc">
-                        <div class="vinyl-center"></div>
-                    </div>
-                    <div class="song-title">Count On Me</div>
-                    <div class="song-artist">Bruno Mars</div>
-                    
-                    <audio class="custom-audio"> 
-                        <source src="song2.mp3" type="audio/mpeg">
-                    </audio>
 
-                    <div class="audio-controls">
-                        <button class="player-btn">▶</button>
-                    </div>
-                </div>
-
-                <!-- Player Lagu 3 -->
-                <div class="audio-player-card">
-                    <div class="vinyl-disc">
-                        <div class="vinyl-center"></div>
-                    </div>
-                    <div class="song-title">Best Friend</div>
-                    <div class="song-artist">Rex Orange County</div>
-                   
-                    <audio class="custom-audio"> 
-                        <source src="song3.mp3" type="audio/mpeg">
-                    </audio>
-
-                    <div class="audio-controls">
-                        <button class="player-btn">▶</button>
-                    </div>
-                </div>
-
-            </div> <!-- Akhir dari song-grid -->
         </div>
     </section>
 
@@ -880,53 +846,21 @@
     updateCounter();
 
 
-    // 2. Logic Multi-Audio Player Baru (Memperbaiki error tombol)
-    // Mengambil semua kartu pemutar lagu yang ada
-    const playerCards = document.querySelectorAll('.audio-player-card');
+        const audio = document.getElementById('custom-audio');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const vinyl = document.getElementById('vinyl');
 
-    playerCards.forEach(card => {
-        const audio = card.querySelector('.custom-audio');
-        const playPauseBtn = card.querySelector('.player-btn');
-        const vinyl = card.querySelector('.vinyl-disc');
-
-        if (playPauseBtn && audio && vinyl) {
-            playPauseBtn.addEventListener('click', function() {
-                // Matikan lagu lain dulu jika ada yang sedang berputar agar tidak balapan
-                playerCards.forEach(otherCard => {
-                    if (otherCard !== card) {
-                        const otherAudio = otherCard.querySelector('.custom-audio');
-                        const otherBtn = otherCard.querySelector('.player-btn');
-                        const otherVinyl = otherCard.querySelector('.vinyl-disc');
-                        
-                        if (otherAudio && !otherAudio.paused) {
-                            otherAudio.pause();
-                            otherBtn.innerText = '▶';
-                            otherVinyl.classList.remove('playing');
-                        }
-                    }
-                });
-
-                // Jalankan atau jeda lagu yang diklik
-                if (audio.paused) {
-                    audio.play().catch(error => {
-                        console.log("Gagal memutar audio, pastikan file mp3 ada di folder yang sama:", error);
-                    });
-                    playPauseBtn.innerText = '⏸';
-                    vinyl.classList.add('playing');
-                } else {
-                    audio.pause();
-                    playPauseBtn.innerText = '▶';
-                    vinyl.classList.remove('playing');
-                }
-            });
-
-            // Jika lagu selesai berputar, kembalikan ikon menjadi PLAY
-            audio.addEventListener('ended', function() {
+        playPauseBtn.addEventListener('click', function() {
+            if (audio.paused) {
+                audio.play();
+                playPauseBtn.innerText = '⏸';
+                vinyl.classList.add('playing');
+            } else {
+                audio.pause();
                 playPauseBtn.innerText = '▶';
                 vinyl.classList.remove('playing');
-            });
-        }
-    });
+            }
+        });
 </script>
 
     </script>
