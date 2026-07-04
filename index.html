@@ -215,66 +215,70 @@
 
         /* 3. Our Memories (Interactive Gallery & Timeline) */
         .memory-layout {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .memory-card {
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.02);
-            border: 1px solid rgba(166, 124, 82, 0.1);
-        }
-
-        .memory-img-container {
+        .memory-layout {
+    display: grid;
+    /* Kita kunci ukuran maksimal satu kartu polaroid paling besar 350px saja */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 350px)); 
+    gap: 30px;
+    justify-content: center; /* Membuat polaroidnya rapi di tengah halaman */
     width: 100%;
-    aspect-ratio: 4 / 3; /* Mengunci rasio kotak pembungkus wajib 4:3 */
-    background-color: #f4eee1; /* Warna cream di area kosong jika foto tidak muat */
+}
+
+.memory-card {
+    background: #ffffff;
+    padding: 16px 16px 26px 16px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(111, 78, 55, 0.08);
+    border: 1px solid rgba(166, 124, 82, 0.15);
+    transition: transform 0.3s ease;
+    width: 100%; /* Memaksa kartu mengikuti ukuran grid */
+    box-sizing: border-box;
+}
+
+.memory-card:hover {
+    transform: translateY(-8px) rotate(1deg);
+}
+
+.memory-img-container {
+    width: 100%;
+    aspect-ratio: 4 / 3; /* Mengunci rasio kotak wajib 4:3 */
+    background-color: #f4eee1; 
     border: 1px solid #eaddca;
     border-radius: 4px;
     overflow: hidden;
-    display: flex; /* Memposisikan foto tepat di tengah kotak */
+    display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
+/* JALUR UTAMA UNTUK JINAKKAN FOTO AGAR TIDAK MELAR */
 .memory-img-container img {
-    max-width: 100% !important;   /* Memaksa lebar foto tidak boleh melebihi kotak */
-    max-height: 100% !important;  /* Memaksa tinggi foto tidak boleh melebihi kotak */
-    width: auto !important;       /* Mengembalikan proporsi asli foto */
-    height: auto !important;      /* Mengembalikan proporsi asli foto */
-    object-fit: contain !important; /* Senjata pamungkas agar tidak di-zoom paksa */
+    width: 100% !important;
+    height: 100% !important;
+    /* 'cover' diganti 'contain' agar foto utuh masuk bingkai. 
+       Kalau kamu mau fotonya full sekotak tanpa sisa ruang, ganti jadi 'cover' 
+       TAPI pastikan 'width' dan 'height' di atas tetap memakai 100% !important */
+    object-fit: contain !important; 
+    display: block;
 }
 
+.memory-caption {
+    font-family: 'Georgia', serif;
+    font-size: 1.1rem;
+    color: #4a3319;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 15px;
+}
 
-        /* polaroid style */
-        .memory-card {
-            padding: 15px;
-            padding-bottom: 25px;
-            background: #fff;
-        }
-        .memory-img-placeholder {
-            height: 250px;
-            margin-bottom: 15px;
-            border: 1px solid #eee;
-        }
-
-        .memory-caption {
-            font-family: var(--font-serif);
-            font-size: 1.1rem;
-            color: var(--dark-brown);
-            text-align: center;
-        }
-
-        .memory-date {
-            display: block;
-            font-size: 0.8rem;
-            color: var(--accent-gold);
-            text-align: center;
-            margin-top: 5px;
-        }
+.memory-date {
+    display: block;
+    font-size: 0.8rem;
+    color: #c39b62;
+    text-align: center;
+    margin-top: 5px;
+            }
 
         /* 4. Special Video Section */
         .video-wrapper {
